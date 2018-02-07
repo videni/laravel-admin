@@ -85,6 +85,7 @@ class AuthController extends Controller
                     $tools->disableListButton();
                 }
             );
+
             $content->body($form->edit(Admin::user()->id));
         });
     }
@@ -115,6 +116,11 @@ class AuthController extends Controller
                 ->default(function ($form) {
                     return $form->model()->password;
                 });
+
+            $form->select('locale', trans('admin.locale'))->options([
+                'zh-CN' => trans('admin.language.simple_chinese'),
+                'en' => trans('admin.language.english'),
+            ]);
 
             $form->setAction(admin_base_path('auth/setting'));
 
